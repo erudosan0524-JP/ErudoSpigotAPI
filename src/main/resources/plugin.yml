@@ -1,0 +1,6 @@
+name: ErudoSpigotAPI
+version: '${version}'
+main: com.github.erudo.spigot.api.erudospigotapi.ErudoSpigotAPI
+api-version: 1.13
+authors: [ erudo ]
+website: https://github.com/erudosan0524-JP/ErudoSpigotAPI
