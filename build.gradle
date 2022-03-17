@@ -1,9 +1,10 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group = 'com.github.erudo.spigot.api'
-version = '1.0-SNAPSHOT'
+version = '1.0.2-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -43,5 +44,36 @@ processResources {
     filteringCharset 'UTF-8'
     filesMatching('plugin.yml') {
         expand props
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "github"
+            url = "https://maven.pkg.github.com/erudosan0524-JP/ErudoSpigotAPI"
+            credentials {
+                username = project.findProperty("GITHUB_USER") ? GITHUB_USER :''
+                password = project.findProperty("GITHUB_TOKEN") ? GITHUB_TOKEN : ''
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            artifactId 'erudo-spigot-api'
+            version  '1.0.2-SNAPSHOT' // バージョンを指定したい場合
+
+            pom {
+                url = 'https://github.com/erudosan0524-JP/ErudoSpigotAPI'
+                licenses {
+                    license {
+                        name = 'MIT'
+                    }
+                }
+            }
+
+
+            from(components.java)
+        }
     }
 }
